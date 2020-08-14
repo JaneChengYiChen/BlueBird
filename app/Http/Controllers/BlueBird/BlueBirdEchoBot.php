@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Http\Controllers\BlueBird;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use LINE\LINEBot;
+use Exception;
+use App\Http\Controllers\BlueBird\WhichBot;
+
+class BlueBirdEchoBot extends Controller
+{
+    public function __construct(Request $request)
+    {
+        $this->request = $request;
+        $this->whichBot = new WhichBot($this->request);
+    }
+
+    public function echoBot()
+    {
+        $signature = $this->whichBot->signature(WhichBot::ECHO_BOT);
+        $lineBot = $this->whichBot->bot();
+        try {
+            $events = $lineBot->parseEventRequest($this->request->getContent(), $signature);
+            Listening::log($this->request->getContent());
+            foreach ($events as $event) {
+                $replyToken = $event->getReplyToken();
+                $text = $event->getText();
+                $lineBot->replyText($replyToken, $text);
+            }
+        } catch (Exception $e) {
+            Listening::log($e);
+            return;
+        }
+        return;
+    }
+}
