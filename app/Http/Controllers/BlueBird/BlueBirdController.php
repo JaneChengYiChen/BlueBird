@@ -16,7 +16,7 @@ class BlueBirdController extends Controller
         $this->whichBot = new WhichBot($this->request);
     }
 
-    public function webhook()
+    public function echoBot()
     {
         $signature = $this->whichBot->signature(WhichBot::ECHO_BOT);
         $lineBot = $this->whichBot->bot();

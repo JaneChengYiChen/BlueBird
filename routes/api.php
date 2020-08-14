@@ -15,5 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['namespace' => 'BlueBird'], function () {
-    Route::post('/line/webhook', 'BlueBirdController@webhook');
+    Route::post('echoBot', 'BlueBirdController@echoBot');
 });
