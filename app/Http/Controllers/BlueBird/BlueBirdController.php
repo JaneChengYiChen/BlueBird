@@ -20,9 +20,9 @@ class BlueBirdController extends Controller
     {
         $signature = $this->whichBot->signature(WhichBot::ECHO_BOT);
         $lineBot = $this->whichBot->bot();
-
         try {
             $events = $lineBot->parseEventRequest($this->request->getContent(), $signature);
+            Listening::log($this->request->getContent());
             foreach ($events as $event) {
                 $replyToken = $event->getReplyToken();
                 $text = $event->getText();
