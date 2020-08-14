@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 class WhichBot
 {
     const ECHO_BOT = 'echoBot';
+    const TEST_BOT = 'testBot';
 
     public function __construct(Request $request)
     {
@@ -47,6 +48,10 @@ class WhichBot
             case WhichBot::ECHO_BOT:
                 $this->lineAccessToken = env('line_channel_access_token');
                 $this->lineChannelSecret = env('line_channel_secret');
+                break;
+            case WhichBot::TEST_BOT:
+                $this->lineAccessToken = env('test_line_channel_access_token');
+                $this->lineChannelSecret = env('test_line_channel_secret');
                 break;
             default:
                 $this->lineAccessToken = null;

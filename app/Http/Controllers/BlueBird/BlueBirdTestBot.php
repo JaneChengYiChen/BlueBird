@@ -7,15 +7,16 @@ use LINE\LINEBot;
 use Exception;
 use App\Http\Controllers\BlueBird\WhichBot;
 
-class BlueBirdEchoBot extends BlueBirdConstruct
+class BlueBirdTestBot extends BlueBirdConstruct
 {
-    public function echoBot()
+    public function testBot()
     {
-        $signature = $this->whichBot->signature(WhichBot::ECHO_BOT);
+        $signature = $this->whichBot->signature(WhichBot::TEST_BOT);
         $lineBot = $this->whichBot->bot();
 
         try {
             $events = $lineBot->parseEventRequest($this->request->getContent(), $signature);
+            Listening::log($this->request->getContent());
             foreach ($events as $event) {
                 $replyToken = $event->getReplyToken();
                 $text = $event->getText();
