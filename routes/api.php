@@ -17,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::group(['namespace' => 'BlueBird'], function () {
     Route::post('echoBot', 'BlueBirdEchoBot@echoBot');
     Route::post('testBot', 'BlueBirdTestBot@testBot');
+    Route::post('storyBot', 'BlueBirdStoryBot@storyBot');
 });

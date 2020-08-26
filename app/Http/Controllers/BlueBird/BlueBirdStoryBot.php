@@ -8,9 +8,10 @@ use Exception;
 use App\Http\Controllers\BlueBird\WhichBot;
 use App\Http\Controllers\BlueBird\StoryClass;
 
-class BlueBirdTestBot extends BlueBirdConstruct
+class BlueBirdStoryBot extends BlueBirdConstruct
 {
-    public function testBot()
+
+    public function storyBot()
     {
         $signature = $this->whichBot->signature(WhichBot::TEST_BOT);
         $lineBot = $this->whichBot->bot();
@@ -21,6 +22,7 @@ class BlueBirdTestBot extends BlueBirdConstruct
                 $replyToken = $event->getReplyToken();
                 $text = $event->getText();
                 if ($text == '?') {
+                    $storyType = self::$storiesContents;
                     $storyClass = new StoryClass;
                     $stories = $storyClass->main();
                     $lineBot->replyMessage($replyToken, $stories);
