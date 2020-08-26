@@ -10,7 +10,6 @@ use App\Http\Controllers\BlueBird\StoryClass;
 
 class BlueBirdStoryBot extends BlueBirdConstruct
 {
-
     public function storyBot()
     {
         $signature = $this->whichBot->signature(WhichBot::STORY_BOT);
@@ -21,7 +20,7 @@ class BlueBirdStoryBot extends BlueBirdConstruct
             foreach ($events as $event) {
                 $replyToken = $event->getReplyToken();
                 $text = $event->getText();
-                if ($text == '?') {
+                if ($text == '?'||$text == '？') {
                     $storyClass = new StoryClass;
                     $stories = $storyClass->main();
                     $lineBot->replyMessage($replyToken, $stories);
