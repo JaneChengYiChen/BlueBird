@@ -22,7 +22,6 @@ class BlueBirdStoryBot extends BlueBirdConstruct
                 $replyToken = $event->getReplyToken();
                 $text = $event->getText();
                 if ($text == '?') {
-                    $storyType = self::$storiesContents;
                     $storyClass = new StoryClass;
                     $stories = $storyClass->main();
                     $lineBot->replyMessage($replyToken, $stories);
