@@ -12,6 +12,7 @@ class WhichBot
 {
     const ECHO_BOT = 'echoBot';
     const TEST_BOT = 'testBot';
+    const STORY_BOT = 'storyBot';
 
     public function __construct(Request $request)
     {
@@ -52,6 +53,10 @@ class WhichBot
             case WhichBot::TEST_BOT:
                 $this->lineAccessToken = env('test_line_channel_access_token');
                 $this->lineChannelSecret = env('test_line_channel_secret');
+                break;
+            case WhichBot::STORY_BOT:
+                $this->lineAccessToken = env('story_line_channel_access_token');
+                $this->lineChannelSecret = env('story_line_channel_secret');
                 break;
             default:
                 $this->lineAccessToken = null;

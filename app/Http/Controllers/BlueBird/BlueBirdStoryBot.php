@@ -13,7 +13,7 @@ class BlueBirdStoryBot extends BlueBirdConstruct
 
     public function storyBot()
     {
-        $signature = $this->whichBot->signature(WhichBot::TEST_BOT);
+        $signature = $this->whichBot->signature(WhichBot::STORY_BOT);
         $lineBot = $this->whichBot->bot();
 
         try {
